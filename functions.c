@@ -18,3 +18,9 @@ int _char(char c)
 	_putchar(c);
 	return (1);
 }
+
+int _num(int i)
+{
+	printf("%d", i);
+	return (2);
+}

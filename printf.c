@@ -17,7 +17,7 @@ int _printf(const char *format, ...)
 {
 	int i, len;
 	va_list ap;
-	const char* c = "cs";
+	const char* c = "csdi";
 
 	va_start(ap, format);
 	i = 0;
@@ -35,7 +35,14 @@ int _printf(const char *format, ...)
 				case 's':
 					i += 2;
 					len +=  _str(va_arg(ap, char*));
+				case 'd':
+					i += 2;
+					len += _num(va_arg(ap, int));
 					break;
+				case 'i':
+                                        i += 2;
+                                        len += _num(va_arg(ap, int));
+                                        break;
 				case '%':
 					i += 2;
 				 	len += _char('%');
