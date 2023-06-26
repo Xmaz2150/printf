@@ -1,5 +1,12 @@
 #include "main.h"
 
+/**
+ * _str - prints str
+ * @s: Input, str
+ *
+ * Return: (int) char's printed
+ */
+
 int _str(char *s)
 {
 	int i;
@@ -13,14 +20,29 @@ int _str(char *s)
 	return (i);
 }
 
+/**
+ * _char - prints char
+ * @c: Input, char
+ *
+ * Return: (int) char's printed
+ */
+
 int _char(char c)
 {
 	_putchar(c);
 	return (1);
 }
 
-int _num(int i)
+/**
+ * _num - prints nums
+ * @n: Input, num
+ *
+ * Return: (int) char's printed
+ */
+int _num(int n)
 {
-	printf("%d", i);
-	return (2);
+	char str[1000];
+
+	sprintf(str, "%d", n);
+	return (_str(str));
 }

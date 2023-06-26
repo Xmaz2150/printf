@@ -1,60 +1,73 @@
 #include "main.h"
 
-int is_match(const char* s, const char c)
-{
-	int i;
-	i = 0;
+void _printf_sos(int *l, c_ch *c, c_ch **f_add, c_ch cc, c_ch cc1, va_list ap);
+/**
+ * _printf - prints all
+ * @format: Input, str
+ *
+ * Return: (int) chars printed
+ */
 
-	while (s[i] != '\0')
-	{
-		if(s[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
-}
 int _printf(const char *format, ...)
 {
 	int i, len;
 	va_list ap;
-	const char* c = "csdi";
+	c_ch *c = "csdi";
 
 	va_start(ap, format);
 	i = 0;
 	len = 0;
-	while (format[i] != '\0')
-	{
-		if (format[i] == '%')
+	do {
+		if (*format == '%')
+			_printf_sos(&len, c, &format, *(format + 1), *(format + 2), ap);
+		else
 		{
-			switch (format[i + 1])
-			{
-				case 'c':
-					i += 2;
-					len += _char((char)va_arg(ap, int));
-					break;
-				case 's':
-					i += 2;
-					len +=  _str(va_arg(ap, char*));
-				case 'd':
-					i += 2;
-					len += _num(va_arg(ap, int));
-					break;
-				case 'i':
-                                        i += 2;
-                                        len += _num(va_arg(ap, int));
-                                        break;
-				case '%':
-					i += 2;
-				 	len += _char('%');
-					if (is_match(c, format[i + 1]))
-							_char(format[i + 1]);
-					break;
-			}
+			_putchar(*format);
+			i++;
 		}
-		_putchar(format[i]);
-		len++;
-		i++;
-	}
-	printf("\ni:%d\n", len);
+
+	} while (*format++);
+
 	return (i);
+}
+
+/**
+ * _printf_sos - _printf helper function
+ * @l: len return by each arg after printing
+ * @c: list of our specifiers
+ * @f_add: Input, add of main str
+ * @cc: Input, 1st char after %
+ * @cc1: Input, 2nd char after %
+ * @ap: Input variable args
+ *
+ * Return: none
+ */
+
+void _printf_sos(int *l, c_ch *c, c_ch **f_add, c_ch cc, c_ch cc1, va_list ap)
+{
+	(void) cc;
+	switch (cc)
+	{
+		case 'c':
+			_move_str_ptr(f_add);
+			l += _char((char)va_arg(ap, int));
+			break;
+		case 's':
+			_move_str_ptr(f_add);
+			l +=  _str(va_arg(ap, char*));
+			break;
+		case 'd':
+			_move_str_ptr(f_add);
+			l += _num(va_arg(ap, int));
+			break;
+		case 'i':
+			_move_str_ptr(f_add);
+			l += _num(va_arg(ap, int));
+			break;
+		case '%':
+			_char('%');
+			if (_is_match(c, cc1))
+				_char(cc1);
+			break;
+	}
 }
