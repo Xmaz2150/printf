@@ -10,7 +10,7 @@ void _printf_sos(int *l, c_ch *c, c_ch **f_add, c_ch cc, c_ch cc1, va_list ap);
 
 int _printf(const char *format, ...)
 {
-	int i, len;
+	int i, len, new_i, new_len;
 	va_list ap;
 	c_ch *c = "csdi";
 
@@ -28,7 +28,9 @@ int _printf(const char *format, ...)
 
 	} while (*format++);
 
-	return (i);
+	new_i = i;
+	new_len = len;
+	return (new_i + new_len);
 }
 
 /**
