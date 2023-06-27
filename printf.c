@@ -62,9 +62,6 @@ void _printf_sos(int *l, c_ch *c, c_ch **f_add, c_ch cc, c_ch cc1, va_list ap)
 			*l +=  _str(va_arg(ap, char*));
 			break;
 		case 'd':
-			_move_str_ptr(f_add);
-			*l += _num(va_arg(ap, int));
-			break;
 		case 'i':
 			_move_str_ptr(f_add);
 			*l += _num(va_arg(ap, int));
