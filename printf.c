@@ -10,14 +10,17 @@ void _printf_sos(int *l, c_ch *c, c_ch **f_add, c_ch cc, c_ch cc1, va_list ap);
 
 int _printf(const char *format, ...)
 {
-	int i, len, new_i, new_len;
+	int i, len, new_i, new_l, tot;
 	va_list ap;
 	c_ch *c = "csdi";
 
 	va_start(ap, format);
 	i = 0;
 	len = 0;
-	do {
+
+	while (*format != '\0')
+	{
+
 		if (*format == '%')
 			_printf_sos(&len, c, &format, *(format + 1), *(format + 2), ap);
 		else
@@ -25,12 +28,12 @@ int _printf(const char *format, ...)
 			_putchar(*format);
 			i++;
 		}
-
-	} while (*format++);
-
+		_move_str_ptr(&format);
+	}
 	new_i = i;
-	new_len = len;
-	return (new_i + new_len);
+	new_l = len;
+	tot = new_i + new_l;
+	return (tot);
 }
 
 /**
@@ -52,22 +55,22 @@ void _printf_sos(int *l, c_ch *c, c_ch **f_add, c_ch cc, c_ch cc1, va_list ap)
 	{
 		case 'c':
 			_move_str_ptr(f_add);
-			l += _char((char)va_arg(ap, int));
+			*l += _char((char)va_arg(ap, int));
 			break;
 		case 's':
 			_move_str_ptr(f_add);
-			l +=  _str(va_arg(ap, char*));
+			*l +=  _str(va_arg(ap, char*));
 			break;
 		case 'd':
 			_move_str_ptr(f_add);
-			l += _num(va_arg(ap, int));
+			*l += _num(va_arg(ap, int));
 			break;
 		case 'i':
 			_move_str_ptr(f_add);
-			l += _num(va_arg(ap, int));
+			*l += _num(va_arg(ap, int));
 			break;
 		case '%':
-			_char('%');
+			*l += _char('%');
 			if (_is_match(c, cc1))
 				_char(cc1);
 			break;
