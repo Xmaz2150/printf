@@ -11,6 +11,8 @@ int _str(char *s)
 {
 	int i;
 
+	if (s == NULL)
+		exit(139);
 	i = 0;
 	while (s[i] != '\0')
 	{
