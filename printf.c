@@ -66,6 +66,10 @@ void _printf_sos(int *l, c_ch *c, c_ch **f_add, c_ch cc, c_ch cc1, va_list ap)
 			_move_str_ptr(f_add);
 			*l += _num(va_arg(ap, int));
 			break;
+		case 'b':
+			_move_str_ptr(f_add);
+			*l += _num_binary(va_arg(ap, int));
+			break;
 		case '%':
 			*l += _char('%');
 			if (_is_match(c, cc1))

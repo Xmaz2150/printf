@@ -12,6 +12,7 @@ int _putchar(char c);
 int _str(char* s);
 int _char(char c);
 int _num(int i);
+int _num_binary(int n);
 
 /**
  * helper functions
