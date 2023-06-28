@@ -10,7 +10,7 @@ typedef const char c_ch;
 
 int _printf(const char *format, ...);
 int _putchar(char c);
-int _str(char* s);
+int _str(char *s);
 int _char(char c);
 int _num(int i);
 int _num_binary(int n);

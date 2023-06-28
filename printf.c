@@ -14,6 +14,8 @@ int _printf(const char *format, ...)
 	va_list ap;
 	c_ch *c = "csdi";
 
+	if (format == NULL)
+		return (0);
 	va_start(ap, format);
 	i = 0;
 	len = 0;
