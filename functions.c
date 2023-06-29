@@ -65,9 +65,9 @@ int _num(va_list ap)
 int _num_binary(va_list ap)
 {
 	int bin[64];
-	int i, j, n;
+	int64_t i, j, n;
 
-	n = va_arg(ap, int);
+	n = va_arg(ap, int64_t);
 	i = 0;
 	while (n > 0)
 	{
