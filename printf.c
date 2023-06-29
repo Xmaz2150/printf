@@ -59,13 +59,13 @@ void _printf_sos(int *l, c_ch *c, c_ch **f_add, c_ch cc, c_ch cc1, va_list ap)
 		{'d', _num},
 		{'i', _num},
 		{'b', _num_binary},
+		{'u', _num_pos},
+		{'l', _num},
+		{'o', _num_octal},
+		{'x', _num_hex},
+		{'X', _num_hex_u},
 		{'\0', NULL}
 	};
-
-	(void) cc;
-	(void) c;
-	(void) f_add;
-
 	i = 0;
 	while (ops[i].c != '\0')
 	{

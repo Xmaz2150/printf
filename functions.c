@@ -81,3 +81,17 @@ int _num_binary(va_list ap)
 
 	return (i);
 }
+/**
+ * _num_pos - prints positive nums
+ * @ap; Input, num
+ *
+ * Return: (int) char's printed
+ */
+
+int _num_pos(va_list ap)
+{
+	unsigned long int n;
+
+	n = va_arg(ap, unsigned long int);
+	return (_num2(n));
+}

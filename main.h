@@ -30,6 +30,10 @@ int _str(va_list ap);
 int _char(va_list ap);
 int _num(va_list ap);
 int _num_binary(va_list ap);
+int _num_pos(va_list ap);
+int _num_octal(va_list ap);
+int _num_hex(va_list ap);
+int _num_hex_u(va_list ap);
 
 int _str2(char *s);
 int _num2(int n);
