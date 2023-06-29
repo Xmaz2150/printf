@@ -68,10 +68,6 @@ int _num_binary(va_list ap)
 	int64_t i, j, n;
 
 	n = va_arg(ap, int64_t);
-	if (n == 0)
-	{
-		_nums2(0);
-	}
 	i = 0;
 	while (n > 0)
 	{
