@@ -52,30 +52,35 @@ int _printf(const char *format, ...)
 
 void _printf_sos(int *l, c_ch *c, c_ch **f_add, c_ch cc, c_ch cc1, va_list ap)
 {
+	int i;
+	op_t ops[] = {
+		{'c', _char},
+		{'s', _str},
+		{'d', _num},
+		{'i', _num},
+		{'b', _num_binary},
+		{'\0', NULL}
+	};
+
 	(void) cc;
-	switch (cc)
+	(void) c;
+	(void) f_add;
+
+	i = 0;
+	while (ops[i].c != '\0')
 	{
-		case 'c':
+		if (ops[i].c == cc)
+		{
 			_move_str_ptr(f_add);
-			*l += _char((char)va_arg(ap, int));
-			break;
-		case 's':
-			_move_str_ptr(f_add);
-			*l +=  _str(va_arg(ap, char*));
-			break;
-		case 'd':
-		case 'i':
-			_move_str_ptr(f_add);
-			*l += _num(va_arg(ap, int));
-			break;
-		case 'b':
-			_move_str_ptr(f_add);
-			*l += _num_binary(va_arg(ap, int));
-			break;
-		case '%':
-			*l += _char('%');
-			if (_is_match(c, cc1))
-				_char(cc1);
-			break;
+			*l += ops[i].f(ap);
+		}
+		i++;
 	}
+	if (cc == '%')
+	{
+		*l += _putchar('%');
+		if (_is_match(c, cc1))
+			_putchar(cc1);
+	}
+
 }

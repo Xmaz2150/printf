@@ -2,15 +2,17 @@
 
 /**
  * _str - prints str
- * @s: Input, str
+ * @ap: Input, str
  *
  * Return: (int) char's printed
  */
 
-int _str(char *s)
+int _str(va_list ap)
 {
 	int i;
+	char *s;
 
+	s = va_arg(ap, char*);
 	if (s == NULL)
 		return (_printf("(null)"));
 	i = 0;
@@ -24,42 +26,48 @@ int _str(char *s)
 
 /**
  * _char - prints char
- * @c: Input, char
+ * @ap: Input, char
  *
  * Return: (int) char's printed
  */
 
-int _char(char c)
+int _char(va_list ap)
 {
+	char c;
+
+	c = (char)va_arg(ap, int);
 	_putchar(c);
 	return (1);
 }
 
 /**
  * _num - prints nums
- * @n: Input, num
+ * @ap: Input, num
  *
  * Return: (int) char's printed
  */
-int _num(int n)
+int _num(va_list ap)
 {
 	char str[1000];
+	int n;
 
+	n = va_arg(ap, int);
 	sprintf(str, "%d", n);
-	return (_str(str));
+	return (_str2(str));
 }
 
 /**
  * _num_binary - prints nums in binary
- * @n: Input, num
+ * @ap: Input, num
  *
  * Return: (int) char's printed
  */
-int _num_binary(int n)
+int _num_binary(va_list ap)
 {
 	int bin[64];
-	int i, j;
+	int i, j, n;
 
+	n = va_arg(ap, int);
 	i = 0;
 	while (n > 0)
 	{
@@ -69,7 +77,7 @@ int _num_binary(int n)
 	}
 
 	for (j = i - 1; j >= 0; j--)
-		_num(bin[j]);
+		_num2(bin[j]);
 
 	return (i);
 }
