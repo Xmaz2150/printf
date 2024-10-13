@@ -30,7 +30,7 @@ int _printf(const char *format, ...)
 			_putchar(*format);
 			i++;
 		}
-		_move_str_ptr(&format);
+		(format)++;
 	}
 	new_i = i;
 	new_l = len;
@@ -71,7 +71,7 @@ void _printf_sos(int *l, c_ch *c, c_ch **f_add, c_ch cc, c_ch cc1, va_list ap)
 	{
 		if (ops[i].c == cc)
 		{
-			_move_str_ptr(f_add);
+			(*f_add)++;
 			*l += ops[i].f(ap);
 		}
 		i++;

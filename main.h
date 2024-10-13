@@ -39,5 +39,4 @@ int _str2(char *s);
 int _num2(int n);
 int _sum_digit(int n);
 int _is_match(const char *s, const char c);
-void _move_str_ptr(const char **ptr);
 #endif /*MAIN_H*/
